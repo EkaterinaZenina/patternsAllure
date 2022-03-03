@@ -25,13 +25,11 @@ public class ShouldRegByAccountTest {
     }
 
 
-    String planingDate = DataGenerator.generateDate(3);
+    String planingDate = DataGenerator.generateDate(5);
     @Test
     public void shouldRegByAccount() {
         open("http://localhost:9999");
         Configuration.holdBrowserOpen = true;
-        String deleteString = Keys.chord(Keys.CONTROL, "a") + Keys.DELETE;
-
         $("[data-test-id='city'] input").setValue(DataGenerator.getCity());
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(DataGenerator.generateDate(3));

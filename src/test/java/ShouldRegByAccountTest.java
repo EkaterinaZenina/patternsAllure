@@ -25,7 +25,7 @@ public class ShouldRegByAccountTest {
     }
 
 
-    String planingDate = DataGenerator.generateDate(5);
+    String planingDate = DataGenerator.generateDate(3);
     @Test
     public void shouldRegByAccount() {
         open("http://localhost:9999");
@@ -37,13 +37,13 @@ public class ShouldRegByAccountTest {
         $x("//*[@name='phone']").setValue(DataGenerator.getPhone());
         $(".checkbox__box").click();
         $("button.button").click();
-        $("[data-test-id='success-notification']").shouldHave(text("Встреча успешно запланирована на " + planingDate), Duration.ofSeconds(15)).shouldBe(visible);
+        $("[data-test-id='success-notification']").shouldHave(text("Встреча успешно запланирована на " + DataGenerator.generateDate(3)), Duration.ofSeconds(15)).shouldBe(visible);
 
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
-        $("[data-test-id='date'] .input__control").setValue(DataGenerator.generateDate(6));
+        $("[data-test-id='date'] .input__control").setValue(DataGenerator.generateDate(3));
         $$(".button").find(text("Запланировать")).click();
         $$(".button__text").find(text("Перепланировать")).click();
-        $("[data-test-id='success-notification']").shouldHave(text("Встреча успешно запланирована на " + DataGenerator.generateDate(6)), Duration.ofSeconds(15)).shouldBe(visible);
+        $("[data-test-id='success-notification']").shouldHave(text("Встреча успешно запланирована на " + DataGenerator.generateDate(3)), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }
 
